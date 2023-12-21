@@ -311,9 +311,13 @@ operations for audit reasons (see [Auditing of Cockpit Operations]({{< ref "/web
 Without constraints, the process engine can create potentially unlimited numbers of user operation log entries. A user operation log entry technically consists of multiple database entries in
 the `ACT_HI_OP_LOG` table. The amount of table entries depends on the number of properties logged for the user operation log. Example: A synchronous message correlation will log up to three properties (`messageName`, `nrOfVariables`, `processInstance`) depending on some conditions. A synchronous message correlation operation with 1000 affected process instances would yield 3000 new rows in the user operation log database table.
 
-Using the process engine configuration flag `logEntriesPerSyncOperationLimit`, the number of created entries to the user operation log can be limited for synchronous API calls. If you choose to change the value of `logEntriesPerSyncOperationLimit`, select a value that you are certain your system can handle.
+Using the process engine configuration flag `logEntriesPerSyncOperationLimit`, the number of created entries to the user operation log can be limited for synchronous API calls. By default, one operation log entry is written per API call, regardless of how many entities were affected (default property value is `1`).
+If you choose to change `logEntriesPerSyncOperationLimit`, select a value that you are certain your system can handle.
 For more information about the possible values for `logEntriesPerSyncOperationLimit`, visit the [configuration documentation]({{< ref "reference/deployment-descriptors/tags/process-engine.md#logEntriesPerSyncOperationLimit" >}}).
 
+Currently, the following APIs are affected:
+
+* Message correlation
 
 # Security Configuration in the external Environment
 
