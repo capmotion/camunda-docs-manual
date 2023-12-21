@@ -1084,7 +1084,7 @@ The following is a list with the most commonly used process engine configuration
       Controls how many user operation log entries are produced for a synchronous API call.
       <ul>
         <li><strong>1:</strong> Regardless of the amount of affected entities, only one operation log entry is generated containing a summary of the operation affecting multiple entities.</li>
-        <li><strong>-1:</strong> Disables user operation logs for synchronous APIs. No user operation log entries are created.</li>
+        <li><strong>-1:</strong> Disables any limits for user operation logs for synchronous APIs. Unlimited amounts of operation log entries are written.</li>
         <li><strong>x&gt;1&lt;Long.MAX_VALUE</strong> Setting a value between 2 and <code>Long.MAX_VALUE</code> will instruct the process engine to complete only API calls that involve no more messages than the configured limit.
     If the limit is exceeded, the API call fails, and a <code>ProcessEngineException</code> is thrown. For successful API calls, the engine produces one operation log entry per affected entity,
     meaning the number of new operation log entries from one API call can never exceed logEntriesPerSyncOperationLimit.</li>
